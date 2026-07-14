@@ -464,54 +464,7 @@ local TeleportTab = CreatePage("Teleport")
 local FriendsTabPage = CreatePage("Friends")
 local StarsTab = CreatePage("Stars")
 local NotifyTab = CreatePage("Notify")
-local SettingsTab = CreatePage("Settings")
-
-
-MinimizeBtn.MouseButton1Click:Connect(function()
-    isMinimized = not isMinimized
-    MainFrame:SetAttribute("Minimized", isMinimized)
-    
-    if isMinimized then
-        TopBar.BackgroundTransparency = 1
-        TopBarLine.BackgroundTransparency = 1
-        TopBarCornerFix.BackgroundTransparency = 1
-        TitleLabel.TextTransparency = 1
-        SubTitleLabel.TextTransparency = 1
-        MoonIcon.ImageTransparency = 1
-        CloseBtn.ImageTransparency = 1
-        SideBar.Visible = false
-        PagesContainer.Visible = false
-        
-        MinimizeBtn.Position = UDim2.new(0.5, -17, 0.5, -17)
-        MinimizeBtn.Size = UDim2.new(0, 34, 0, 34)
-        MinimizeBtn.Image = "rbxassetid://94035720579249"
-        
-        local tweenInfo = TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
-        TweenService:Create(MainFrame, tweenInfo, {Size = minimizedSize}):Play()
-        TweenService:Create(MainCorner, tweenInfo, {CornerRadius = minimizedCornerRadius}):Play()
-    else
-        MinimizeBtn.Position = UDim2.new(1, -52, 0.5, -8)
-        MinimizeBtn.Size = UDim2.new(0, 16, 0, 16)
-        MinimizeBtn.Image = "rbxassetid://10751034456"
-        
-        local tweenInfo = TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
-        local sizeTween = TweenService:Create(MainFrame, tweenInfo, {Size = originalSize})
-        sizeTween:Play()
-        TweenService:Create(MainCorner, tweenInfo, {CornerRadius = originalCornerRadius}):Play()
-        
-        sizeTween.Completed:Connect(function()
-            if not isMinimized then
-                TopBar.BackgroundTransparency = 0
-                TopBarLine.BackgroundTransparency = 0.95
-                TopBarCornerFix.BackgroundTransparency = 0
-                TitleLabel.TextTransparency = 0
-                SubTitleLabel.TextTransparency = 0
-                MoonIcon.ImageTransparency = 0
-                CloseBtn.ImageTransparency = 0
-                SideBar.Visible = true
-                PagesContainer.Visible = true
-            end
--- =======================================================
+local SettingsTab = CreatePage("Settings")-- =======================================================
 -- SMOOTH MİNİMİZE SİSTEMİ
 -- =======================================================
 local isMinimized = false
@@ -834,10 +787,9 @@ DiscordBtn.MouseButton1Click:Connect(function()
     end
 end)
 
-
 -- ==========================================
 -- [2] EXECUTOR TAB
----- ==========================================
+-- ==========================================
 local ExecTitle = Instance.new("TextLabel", ExecutorTab)
 ExecTitle.Size = UDim2.new(1, 0, 0, 30)
 ExecTitle.BackgroundTransparency = 1
@@ -895,7 +847,6 @@ ClearActBtn.Font = Enum.Font.GothamBold
 ClearActBtn.TextSize = 12
 Instance.new("UICorner", ClearActBtn).CornerRadius = UDim.new(0, 8)
 ClearActBtn.MouseButton1Click:Connect(function() CodeBox.Text = "" end)
-
 
 -- ==========================================
 -- [3] TELEPORT TAB
@@ -990,7 +941,6 @@ TpRandomBtn.MouseButton1Click:Connect(function()
     for _, p in ipairs(plrs) do if p ~= LocalPlayer then table.insert(valid, p) end end
     if #valid > 0 then ExecuteTP(valid[math.random(1, #valid)]) else ShowNotification("Teleport Error", Translates[CurrentLanguage].NoOtherPlrs, 3) end
 end)
-
 
 -- ==========================================
 -- [4] STARS TAB (ÖZELLİKLER & HİLELER)
@@ -1248,7 +1198,7 @@ CreateModPanel("Fly Hack", true, 500, 50, function(active)
     if active then StartFly() else StopFly() end
 end, function(val) flySpeed = val end)
 
---ESP Sistemi
+-- ESP Sistemi
 local espEnabled = false
 local ESPFolder = Instance.new("Folder", CoreGui)
 ESPFolder.Name = "HiddenDarkerESP"
@@ -1428,7 +1378,6 @@ SpamToggleBtn.MouseButton1Click:Connect(function()
         end
     end
 end)
-
 -- [2] SPECTATE / LOOKAT PLAYER PANEL
 layoutCounter = layoutCounter + 1
 local SpecPanel = Instance.new("Frame", StarScroll)
@@ -1544,7 +1493,6 @@ SpecRandomBtn.MouseButton1Click:Connect(function()
         ShowNotification("Error", "No other players found!", 2)
     end
 end)
-
 
 -- ==========================================
 -- [GELİŞMİŞ] (4) FRIENDS TAB - ARKADAŞ DURUMU GÖRME
@@ -1674,7 +1622,7 @@ end)
 
 
 -- ==========================================
---[YENİ] (6) NOTIFY TAB - BİLDİRİMLER VE GÜNCELLEMELER
+-- [YENİ] (6) NOTIFY TAB - BİLDİRİMLER VE GÜNCELLEMELER
 -- ==========================================
 local NotifyTitle = Instance.new("TextLabel", NotifyTab)
 NotifyTitle.Size = UDim2.new(1, 0, 0, 30)
@@ -1874,7 +1822,6 @@ TurBtn.MouseButton1Click:Connect(function() UpdateUILanguage("TR") end)
 
 -- Başlangıçta Türkçe Ayarla
 UpdateUILanguage("TR")
-
 
 -- ==========================================
 -- SEKMELER ARASI GEÇİŞ MANTİĞİ
